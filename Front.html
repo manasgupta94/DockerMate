@@ -1,0 +1,156 @@
+<!Doctype html>
+<head>
+<title>Docker</title>
+
+
+<style>
+body {
+
+  overflow: hidden; /* Hide scrollbars */
+}
+
+h1
+{
+background-color:yellow;
+}
+</style>
+
+<script >
+function create(){
+   decision = confirm("Are you sure, you want to 'create' this container");
+   if(decision == true){
+        img = document.getElementById("c_i_name").value;
+        cname = document.getElementById("c_c_name").value;
+        xhr = new XMLHttpRequest();
+        xhr.open('GET','http://192.168.43.30/cgi-bin/create.py?i='+img+'&n='+cname,'true');
+        xhr.send();
+        document.getElementById("im").innerHTML = "Container created with name " + cname ;
+        xhr.onload=function (){
+            output = xhr.responseText;
+            
+            output = output + "\n\n!!! Container Created !!!";
+            document.getElementById("op").innerHTML = output;
+        }
+        
+   }
+}
+
+
+function del(){
+    decision = confirm("Are you sure, you want to 'Delete' this container");
+    if(decision == true){
+            cname = document.getElementById("c_i1_name").value;
+            xhr = new XMLHttpRequest();
+            xhr.open('GET','http://192.168.43.30/cgi-bin/del.py?n='+cname,'true');
+            xhr.send();
+            document.getElementById("im").innerHTML = "Container deleted with name " + cname ;
+            xhr.onload=function (){
+                output = xhr.responseText;
+		
+		output = "Container " + output + " Deleted"
+                document.getElementById("op").innerHTML = output;
+            }
+    }
+}
+
+function image(){
+    img = document.getElementById("p_i_name").value;
+    xhr = new XMLHttpRequest();
+    xhr.open('GET','http://192.168.43.30/cgi-bin/image.py?i='+img,'true');
+    xhr.send();
+    document.getElementById("im").innerHTML = "Image pulled with name " + img ;
+    xhr.onload=function (){
+        output = xhr.responseText;
+        document.getElementById("op").innerHTML = output;
+    }
+ 
+}
+</script>
+
+
+</head>
+
+<body>
+
+<div style="width:100%;background-color:#0077BE;margin:0px;">
+
+<div style="display:inline-block;width:30%;height:650px;">
+
+
+
+
+<div style="position:fixed;margin:16px;border:2px solid black;padding:15px;height:260px;width:22%;background-color:red;"> 
+<h1>Launch Container</h1>
+<p style="font-size: 23px;margin:5px;">Your image name</p><input id="c_i_name">
+            <p style="font-size: 23px;margin:5px;">Container name</p><input id="c_c_name">
+ <button onclick="create();" style="border: red;height: 30px;font-size: 23px;width: 150px;font-weight: bolder;background-color: green;margin:15px 0px;text-align: center; ">Create</button>
+          
+
+
+</div>
+
+<div style="position:fixed;bottom:15px;margin:16px;border:2px solid black;padding:15px;height:260px;width:22%;background-color:RED;"> 
+
+<h1>Delete Container</h1>
+<p style="font-size: 23px;margin:15px 0px;">Container name</p><input id="c_i1_name">
+            
+ <button onclick="del();" style="border: red;height: 30px;font-size: 23px;width: 150px;font-weight: bolder;background-color: green;margin:25px 0px;text-align: center; ">Delete</button>
+     
+</div>
+
+</div>
+
+
+
+
+<div style="display:inline-block;width:40%;height:650px;">
+<h1 style="text-decoration:underline;text-align:center;position:fixed;margin: 45px 105px;background-color:yellow;">Docker Using GUI </h1>
+
+<div style="width:35%;background-color:red;position:fixed;height:450px;margin:140px 20px;" >
+
+<h1 id="op" style="text-align:center;position:fixed;background-color:yellow;"></h1>
+<h1 id="im" style="text-align:center;position:fixed;background-color:yellow;"></h1>
+
+
+</div >
+
+
+</div>
+
+
+
+
+
+<div style="display:inline-block;height:650px;width:29%;">
+
+
+<div style="position:fixed;margin:16px;border:2px solid black;padding:15px;height:260px;width:22%;background-color:red;">
+
+<h1>Pulling Image</h1>
+            <p style="font-size: 23px">Your image name</p><input id="p_i_name">
+            <br><br><br><br>
+            <button onclick="image();" style="border: red;height: 30px;font-size: 23px;width: 150px;font-weight: bolder;background-color: green;text-align: center; ">Pull</button>
+</div>
+
+<div style="position:fixed;bottom:15px;margin:16px;border:2px solid black;padding:15px;height:260px;width:22%;background-color:red;">
+
+
+<h1>List all Container</h1>
+            <p style="font-size: 23px">This would list all the containers(running & stoped)</p>
+            <br><br>
+            <button onclick="list();" style="border: red;height: 30px;font-size: 23px;width: 150px;font-weight: bolder;background-color: green;text-align: center; ">List</button>
+</div>
+
+
+</div>
+
+
+
+</div>
+
+</body>
+</html>
+
+ 
+
+
