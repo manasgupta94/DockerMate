@@ -4,11 +4,12 @@ Tool which provides the user Platform as a Service (PaaS)) by showing
 your own creativity and UI/UX designing skills to make the web portal
 user friendly.
 This app will help the user to run all the docker commands like:
-👉docker images
-👉docker ps
-👉docker run
-👉docker rm -f
-👉docker exec
+ 👉docker images
+ 👉docker ps
+ 👉docker run
+ 👉docker rm -f
+ 👉docker exec
+
 
 ![1](https://user-images.githubusercontent.com/101797443/159101214-9b180072-f228-4df4-8c37-2ae7fc6264e4.png)
 
